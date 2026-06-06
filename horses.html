@@ -50,4 +50,153 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 .optional{font-size:11px;color:#8a8a85;margin-left:4px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .modal-actions{display:flex;gap:8px;margin-top:1.25rem}
-.btn-c
+.btn-cancel{flex:1;padding:9px;background:transparent;border:1px solid #d4d2cb;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;color:#5a5a55}
+.btn-save{flex:1;padding:9px;background:#1D9E75;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;color:#fff}
+.btn-save:hover{background:#178a64}
+.btn-save:disabled{background:#9ad4be;cursor:not-allowed}
+.error{background:#fcebeb;color:#c0392b;font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:14px;display:none}
+</style>
+</head>
+<body>
+<nav>
+  <a href="dashboard.html" class="logo">Stirrup</a>
+  <div class="nav-right">
+    <a href="dashboard.html" class="btn btn-ghost">Dashboard</a>
+    <button class="btn btn-primary" onclick="openModal()">+ Add horse</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <div class="page-title">Horses</div>
+    <button class="btn btn-primary" onclick="openModal()">+ Add horse</button>
+  </div>
+
+  <div class="summary">
+    <div class="sum"><div class="sum-label">Total horses</div><div class="sum-val" id="total-horses">—</div></div>
+    <div class="sum"><div class="sum-label">Active</div><div class="sum-val" id="active-horses">—</div></div>
+    <div class="sum"><div class="sum-label">In lessons</div><div class="sum-val" id="lessons-today">—</div></div>
+  </div>
+
+  <div id="horse-list"><div class="loading">Loading horses…</div></div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-title">Add a horse</div>
+    <div class="modal-sub">This horse will appear in lesson booking and rider preference dropdowns.</div>
+    <div class="error" id="error"></div>
+    <div class="field"><label>Horse name</label><input type="text" id="h-name" placeholder="e.g. Willow"></div>
+    <div class="row2">
+      <div class="field"><label>Breed <span class="optional">optional</span></label><input type="text" id="h-breed" placeholder="e.g. Quarter Horse"></div>
+      <div class="field"><label>Color <span class="optional">optional</span></label><input type="text" id="h-color" placeholder="e.g. Bay"></div>
+    </div>
+    <div class="field"><label>Notes <span class="optional">optional</span></label><textarea id="h-notes" placeholder="e.g. beginner friendly, no jumping…"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" id="save-btn" onclick="saveHorse()">Add horse</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://mfinlbqfowymmklhkuhb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_PcwbX1YoncwnrHobFmpAIA_L39K4XfK';
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+let allHorses = [];
+
+function openModal(){
+  document.getElementById('h-name').value='';
+  document.getElementById('h-breed').value='';
+  document.getElementById('h-color').value='';
+  document.getElementById('h-notes').value='';
+  document.getElementById('error').style.display='none';
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+}
+
+async function saveHorse(){
+  const name = document.getElementById('h-name').value.trim();
+  if(!name){
+    document.getElementById('error').textContent='Please enter a horse name.';
+    document.getElementById('error').style.display='block';
+    return;
+  }
+  const btn = document.getElementById('save-btn');
+  btn.disabled=true;btn.textContent='Saving…';
+  const { data: { user } } = await db.auth.getUser();
+  const { error } = await db.from('horses').insert({
+    trainer_id: user.id,
+    name: name,
+    breed: document.getElementById('h-breed').value.trim(),
+    color: document.getElementById('h-color').value.trim(),
+    notes: document.getElementById('h-notes').value.trim(),
+    active: true
+  });
+  if(error){
+    document.getElementById('error').textContent=error.message;
+    document.getElementById('error').style.display='block';
+    btn.disabled=false;btn.textContent='Add horse';
+    return;
+  }
+  closeModal();
+  load();
+}
+
+async function removeHorse(id){
+  if(!confirm('Remove this horse from your roster?')) return;
+  await db.from('horses').update({active:false}).eq('id',id);
+  load();
+}
+
+function renderHorses(){
+  const list = document.getElementById('horse-list');
+  const active = allHorses.filter(h=>h.active);
+  document.getElementById('total-horses').textContent = allHorses.length;
+  document.getElementById('active-horses').textContent = active.length;
+
+  if(active.length===0){
+    list.innerHTML=`<div class="empty">
+      <div class="empty-icon">🐴</div>
+      <div class="empty-title">No horses yet</div>
+      <div class="empty-sub">Add your horses so they appear in lesson booking and rider profiles.</div>
+      <button class="btn btn-primary" onclick="openModal()">Add first horse</button>
+    </div>`;
+    return;
+  }
+
+  list.innerHTML='';
+  active.forEach(h=>{
+    const card = document.createElement('div');
+    card.className='horse-card';
+    card.innerHTML=`
+      <div class="horse-icon">🐴</div>
+      <div class="horse-info">
+        <div class="horse-name">${h.name}</div>
+        <div class="horse-meta">${[h.breed,h.color].filter(Boolean).join(' · ')||'No details added'}${h.notes?' · '+h.notes:''}</div>
+      </div>
+      <div class="horse-right">
+        <button class="btn-remove" onclick="removeHorse('${h.id}')">Remove</button>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+async function load(){
+  const { data: { user } } = await db.auth.getUser();
+  if(!user){ window.location.href='login.html'; return; }
+  const { data: bookings } = await db.from('bookings').select('id').eq('trainer_id', user.id);
+  document.getElementById('lessons-today').textContent = (bookings||[]).length;
+  const { data: horses } = await db.from('horses').select('*').eq('trainer_id', user.id).order('created_at',{ascending:true});
+  allHorses = horses || [];
+  renderHorses();
+}
+
+load();
+</script>
+</body>
+</html>
