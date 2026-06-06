@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northern Reign Ecosystems</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#0f0e0c;color:#f0ede6;min-height:100vh}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;border-bottom:1px solid #2a2820}
+.nav-logo{display:flex;align-items:center;gap:14px}
+.nav-logo img{width:48px;height:48px;object-fit:contain;filter:invert(0)}
+.nav-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#f0ede6;letter-spacing:.02em}
+.nav-sub{font-size:11px;color:#8a8474;letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
+.nav-right{font-size:13px;color:#8a8474}
+.hero{text-align:center;padding:5rem 2rem 4rem;border-bottom:1px solid #2a2820}
+.hero-logo{width:180px;height:180px;object-fit:contain;margin:0 auto 2rem;display:block}
+.hero-title{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#f0ede6;line-height:1.15;margin-bottom:1rem;letter-spacing:-.01em}
+.hero-sub{font-size:16px;color:#8a8474;max-width:480px;margin:0 auto;line-height:1.7;letter-spacing:.01em}
+.divider{display:flex;align-items:center;gap:16px;max-width:200px;margin:2.5rem auto 0}
+.divider-line{flex:1;height:1px;background:#2a2820}
+.divider-icon{font-size:12px;color:#4a4840;letter-spacing:.1em}
+.apps{padding:4rem 2rem;max-width:960px;margin:0 auto}
+.apps-label{font-size:11px;color:#4a4840;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-bottom:2.5rem}
+.app-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.app-card{background:#1a1914;border:1px solid #2a2820;border-radius:12px;padding:1.75rem;text-decoration:none;transition:border-color .2s,background .2s;display:block}
+.app-card:hover{border-color:#4a4840;background:#201f18}
+.app-card.coming-soon{opacity:.5;cursor:default;pointer-events:none}
+.app-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:1.25rem}
+.app-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#f0ede6;margin-bottom:6px}
+.app-desc{font-size:13px;color:#8a8474;line-height:1.6;margin-bottom:1.25rem}
+.app-tag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;display:inline-block;letter-spacing:.03em}
+.tag-live{background:#1a2e22;color:#4a9e6a;border:1px solid #2a4a32}
+.tag-soon{background:#1e1e16;color:#4a4830;border:1px solid #2a2820}
+.app-cta{display:inline-block;margin-top:1rem;font-size:13px;color:#8a8474}
+.app-card:not(.coming-soon):hover .app-cta{color:#f0ede6}
+.footer{border-top:1px solid #2a2820;padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Playfair Display',serif;font-size:13px;color:#4a4840}
+.footer-note{font-size:12px;color:#4a4840}
+@media(max-width:700px){
+  .app-grid{grid-template-columns:1fr}
+  .hero-title{font-size:32px}
+  nav{padding:1rem 1.5rem}
+  .footer{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" alt="Northern Reign Ecosystems">
+    <div>
+      <div class="nav-brand">Northern Reign</div>
+      <div class="nav-sub">Ecosystems</div>
+    </div>
+  </div>
+  <div class="nav-right">Built for horse people</div>
+</nav>
+
+<div class="hero">
+  <img src="logo.png" alt="Northern Reign Ecosystems" class="hero-logo">
+  <div class="hero-title">Tools built for<br>the equestrian world</div>
+  <div class="hero-sub">Purpose-built software for barns, trainers, and the people who keep horses running. No fluff, no learning curve.</div>
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon">✦</div>
+    <div class="divider-line"></div>
+  </div>
+</div>
+
+<div class="apps">
+  <div class="apps-label">The ecosystem</div>
+  <div class="app-grid">
+
+    <a href="https://northernreign.github.io/stirrup" class="app-card">
+      <div class="app-icon" style="background:#1a2e22">🐴</div>
+      <div class="app-name">Stirrup</div>
+      <div class="app-desc">Lesson scheduling and payment collection for riding trainers. Book lessons, track riders, send Square payment links.</div>
+      <span class="app-tag tag-live">Live</span>
+      <div class="app-cta">Open Stirrup →</div>
+    </a>
+
+    <div class="app-card coming-soon">
+      <div class="app-icon" style="background:#1e1e16">🪣</div>
+      <div class="app-name">Bucket</div>
+      <div class="app-desc">Feeding schedules, location tracking, and inventory management for barn managers and their staff.</div>
+      <span class="app-tag tag-soon">Coming soon</span>
+    </div>
+
+    <div class="app-card coming-soon">
+      <div class="app-icon" style="background:#1e1e16">✦</div>
+      <div class="app-name">More coming</div>
+      <div class="app-desc">Northern Reign is building the operating system for equestrian businesses. More tools on the way.</div>
+      <span class="app-tag tag-soon">In the works</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Northern Reign Ecosystems</div>
+  <div class="footer-note">© 2026 · Built for horse people</div>
+</div>
+
+</body>
+</html>
