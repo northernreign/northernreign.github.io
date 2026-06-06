@@ -7,40 +7,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#0f0e0c;color:#f0ede6;min-height:100vh}
-nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;border-bottom:1px solid #2a2820}
+body{font-family:'Inter',sans-serif;background:#f5f0e8;color:#2c2416;min-height:100vh}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;background:#efe8d8;border-bottom:1px solid #d9ceb8}
 .nav-logo{display:flex;align-items:center;gap:14px}
-.nav-logo img{width:48px;height:48px;object-fit:contain;filter:invert(0)}
-.nav-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#f0ede6;letter-spacing:.02em}
-.nav-sub{font-size:11px;color:#8a8474;letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
-.nav-right{font-size:13px;color:#8a8474}
-.hero{text-align:center;padding:5rem 2rem 4rem;border-bottom:1px solid #2a2820}
-.hero-logo{width:180px;height:180px;object-fit:contain;margin:0 auto 2rem;display:block}
-.hero-title{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#f0ede6;line-height:1.15;margin-bottom:1rem;letter-spacing:-.01em}
-.hero-sub{font-size:16px;color:#8a8474;max-width:480px;margin:0 auto;line-height:1.7;letter-spacing:.01em}
-.divider{display:flex;align-items:center;gap:16px;max-width:200px;margin:2.5rem auto 0}
-.divider-line{flex:1;height:1px;background:#2a2820}
-.divider-icon{font-size:12px;color:#4a4840;letter-spacing:.1em}
-.apps{padding:4rem 2rem;max-width:960px;margin:0 auto}
-.apps-label{font-size:11px;color:#4a4840;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-bottom:2.5rem}
+.nav-logo img{width:48px;height:48px;object-fit:contain}
+.nav-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2c2416;letter-spacing:.02em}
+.nav-sub{font-size:11px;color:#8a7a5a;letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
+.nav-right{font-size:13px;color:#8a7a5a}
+.hero{text-align:center;padding:4rem 2rem 3.5rem;background:#efe8d8;border-bottom:1px solid #d9ceb8}
+.hero-logo{width:160px;height:160px;object-fit:contain;margin:0 auto 2rem;display:block}
+.hero-title{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:#2c2416;line-height:1.2;margin-bottom:1rem;letter-spacing:-.01em}
+.hero-sub{font-size:15px;color:#6a5c3e;max-width:460px;margin:0 auto;line-height:1.75}
+.divider{display:flex;align-items:center;gap:16px;max-width:200px;margin:2rem auto 0}
+.divider-line{flex:1;height:1px;background:#d9ceb8}
+.divider-icon{font-size:12px;color:#b0a080}
+.apps{padding:3.5rem 2rem;max-width:960px;margin:0 auto}
+.apps-label{font-size:11px;color:#b0a080;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-bottom:2.5rem}
 .app-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.app-card{background:#1a1914;border:1px solid #2a2820;border-radius:12px;padding:1.75rem;text-decoration:none;transition:border-color .2s,background .2s;display:block}
-.app-card:hover{border-color:#4a4840;background:#201f18}
-.app-card.coming-soon{opacity:.5;cursor:default;pointer-events:none}
+.app-card{background:#efe8d8;border:1px solid #d9ceb8;border-radius:12px;padding:1.75rem;text-decoration:none;transition:border-color .2s,background .2s;display:block}
+.app-card:hover{border-color:#b0a080;background:#e8dfc8}
+.app-card.coming-soon{opacity:.6;cursor:default;pointer-events:none}
 .app-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:1.25rem}
-.app-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#f0ede6;margin-bottom:6px}
-.app-desc{font-size:13px;color:#8a8474;line-height:1.6;margin-bottom:1.25rem}
+.app-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#2c2416;margin-bottom:6px}
+.app-desc{font-size:13px;color:#6a5c3e;line-height:1.6;margin-bottom:1.25rem}
 .app-tag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;display:inline-block;letter-spacing:.03em}
-.tag-live{background:#1a2e22;color:#4a9e6a;border:1px solid #2a4a32}
-.tag-soon{background:#1e1e16;color:#4a4830;border:1px solid #2a2820}
-.app-cta{display:inline-block;margin-top:1rem;font-size:13px;color:#8a8474}
-.app-card:not(.coming-soon):hover .app-cta{color:#f0ede6}
-.footer{border-top:1px solid #2a2820;padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between}
-.footer-brand{font-family:'Playfair Display',serif;font-size:13px;color:#4a4840}
-.footer-note{font-size:12px;color:#4a4840}
+.tag-live{background:#dceedd;color:#2d6a3f;border:1px solid #b8d8c0}
+.tag-soon{background:#e8dfc8;color:#b0a080;border:1px solid #d9ceb8}
+.app-cta{display:inline-block;margin-top:1rem;font-size:13px;color:#8a7a5a;font-weight:500}
+.app-card:not(.coming-soon):hover .app-cta{color:#2c2416}
+.footer{border-top:1px solid #d9ceb8;background:#efe8d8;padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Playfair Display',serif;font-size:13px;color:#8a7a5a}
+.footer-note{font-size:12px;color:#b0a080}
 @media(max-width:700px){
   .app-grid{grid-template-columns:1fr}
-  .hero-title{font-size:32px}
+  .hero-title{font-size:30px}
   nav{padding:1rem 1.5rem}
   .footer{flex-direction:column;gap:8px;text-align:center}
 }
@@ -75,7 +75,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem
   <div class="app-grid">
 
     <a href="https://northernreign.github.io/stirrup" class="app-card">
-      <div class="app-icon" style="background:#1a2e22">🐴</div>
+      <div class="app-icon" style="background:#dceedd">🐴</div>
       <div class="app-name">Stirrup</div>
       <div class="app-desc">Lesson scheduling and payment collection for riding trainers. Book lessons, track riders, send Square payment links.</div>
       <span class="app-tag tag-live">Live</span>
@@ -83,14 +83,14 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem
     </a>
 
     <div class="app-card coming-soon">
-      <div class="app-icon" style="background:#1e1e16">🪣</div>
+      <div class="app-icon" style="background:#e8dfc8">🪣</div>
       <div class="app-name">Bucket</div>
       <div class="app-desc">Feeding schedules, location tracking, and inventory management for barn managers and their staff.</div>
       <span class="app-tag tag-soon">Coming soon</span>
     </div>
 
     <div class="app-card coming-soon">
-      <div class="app-icon" style="background:#1e1e16">✦</div>
+      <div class="app-icon" style="background:#e8dfc8">✦</div>
       <div class="app-name">More coming</div>
       <div class="app-desc">Northern Reign is building the operating system for equestrian businesses. More tools on the way.</div>
       <span class="app-tag tag-soon">In the works</span>
